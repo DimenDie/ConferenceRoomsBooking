@@ -57,11 +57,14 @@ namespace Conference.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("RatePerHour")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -77,12 +80,6 @@ namespace Conference.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookingNavigationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
                     b.Property<int>("HallId")
                         .HasColumnType("int");
 
@@ -90,12 +87,10 @@ namespace Conference.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("RatePerHour")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingNavigationId");
 
                     b.HasIndex("HallId");
 
@@ -115,17 +110,11 @@ namespace Conference.Api.Migrations
 
             modelBuilder.Entity("Conference.Api.Models.Service", b =>
                 {
-                    b.HasOne("Conference.Api.Models.Booking", "BookingNavigation")
-                        .WithMany()
-                        .HasForeignKey("BookingNavigationId");
-
                     b.HasOne("Conference.Api.Models.Hall", "HallNavigation")
                         .WithMany("Services")
                         .HasForeignKey("HallId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("BookingNavigation");
 
                     b.Navigation("HallNavigation");
                 });
