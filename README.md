@@ -1,7 +1,3 @@
-Here’s a basic `README.md` template for your project. You can customize it further depending on any additional details or documentation you want to include.
-
----
-
 # Conference Room Booking API
 
 This project is a web API for managing conference room bookings, including services offered by the rooms. Built using ASP.NET Core and Entity Framework Core, the API allows creating, editing, and viewing halls and their services, as well as making bookings.
