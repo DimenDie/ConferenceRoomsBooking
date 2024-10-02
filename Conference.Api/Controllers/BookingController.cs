@@ -9,6 +9,9 @@ public class BookingController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Add a booking using JSON payload.
+    /// </summary>
     [HttpPost("Book")]
     public async Task<IActionResult> BookHall([FromBody] BookingDto request)
     {
@@ -56,6 +59,10 @@ public class BookingController : ControllerBase
 
         return Ok(new { BookingId = booking.Id, TotalPrice = totalPrice });
     }
+
+    /// <summary>
+    /// Get the list of all currently available halls [Not Implemented]
+    /// </summary>
     [HttpGet]
     public Task<IActionResult> FindAvailableHalls([FromBody] BookingDto request)
     {

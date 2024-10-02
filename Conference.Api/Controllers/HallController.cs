@@ -12,6 +12,10 @@ public class HallController : ControllerBase
         _context = context;
     }
 
+
+    /// <summary>
+    /// Get the hall by Id.
+    /// </summary>
     [HttpGet("{hallId}")]
     public async Task<IActionResult> GetHallById(int hallId)
     {
@@ -22,6 +26,9 @@ public class HallController : ControllerBase
         return Ok(hall);
     }
 
+    /// <summary>
+    /// Get the list of all halls.
+    /// </summary>
     [HttpGet]
     public IActionResult GetAll()
     {
@@ -33,6 +40,9 @@ public class HallController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Add a hall using JSON payload.
+    /// </summary>
     [HttpPost]
     public async Task<IActionResult> AddHall([FromBody] HallDto hallDto)
     {
@@ -64,6 +74,10 @@ public class HallController : ControllerBase
         await _context.SaveChangesAsync();
     }
 
+
+    /// <summary>
+    /// Update the hall by Id using JSON payload.
+    /// </summary>
     [HttpPut("{hallId}")]
     public async Task<IActionResult> UpdateHall(int hallId, UpdateHallDto updateHallDto)
     {
@@ -90,6 +104,11 @@ public class HallController : ControllerBase
         await _context.SaveChangesAsync();
         return NoContent();
     }
+
+
+    /// <summary>
+    /// Delete the hall by Id.
+    /// </summary>
     [HttpDelete]
     [Route("{hallId}")]
     public IActionResult Delete([FromRoute] int hallId)

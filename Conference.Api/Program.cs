@@ -2,7 +2,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Conference Room API",
+        Version = "0.0.1"
+    });
+    //Idiotic boilerplate code
+    var filename = Assembly.GetExecutingAssembly().GetName().Name + ".xml";
+    var filepath = Path.Combine(AppContext.BaseDirectory, filename);
+    c.IncludeXmlComments(filepath);
+});
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
