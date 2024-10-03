@@ -1,7 +1,5 @@
-public class BookingDto
+public class BookingFindDto
 {
-    public int HallId { get; set; }
-
     public DateTime StartTime { get; set; }
     public int Duration { get; set; }
     public int Capacity { get; set; }
